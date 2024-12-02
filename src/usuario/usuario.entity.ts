@@ -26,11 +26,7 @@ export class UsuarioEntity {
     @Column()
     numeroextension: number;
 
-    @Column({
-        type: "enum",
-        enum: UserRole,
-        default: UserRole.PROFESOR
-    })
+    @Column()
     rol: string;
 
     @ManyToOne(() => UsuarioEntity, usuario => usuario.subordinados)
