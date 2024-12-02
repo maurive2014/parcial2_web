@@ -29,7 +29,7 @@ let BonoService = class BonoService {
             throw new business_errors_1.BusinessLogicException("El monto está mal", business_errors_1.BusinessError.PRECONDITION_FAILED);
         }
         const usuario = await this.usuarioRepository.findOne({
-            where: { id: bono.usuario.id },
+            where: { id: bono.usuarioId },
         });
         if (!usuario) {
             throw new business_errors_1.BusinessLogicException('El usuario asociado al bono no existe.', business_errors_1.BusinessError.NOT_FOUND);
@@ -52,7 +52,7 @@ let BonoService = class BonoService {
         if (!usuario) {
             throw new business_errors_1.BusinessLogicException('El usuario con el ID dado no fue encontrado.', business_errors_1.BusinessError.NOT_FOUND);
         }
-        return await this.bonoRepository.find({ where: { usuario: { id: userID } } });
+        return await this.bonoRepository.find({ where: { usuarioId: userID } });
     }
     async deleteBono(id) {
         const bono = await this.bonoRepository.findOne({ where: { id } });

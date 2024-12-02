@@ -18,9 +18,8 @@ export class BonoEntity {
     @Column()
     palabraclave: string;
     
-
-    @ManyToOne(() => UsuarioEntity, usuario => usuario.bonos)
-    usuario: UsuarioEntity;
+    @Column()
+    usuarioId: string;
 
     @ManyToOne(() => ClaseEntity, clase => clase.bonos)
     clase: ClaseEntity;
