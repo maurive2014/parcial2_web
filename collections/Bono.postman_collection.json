@@ -286,6 +286,25 @@
 		},
 		{
 			"name": "Get Bono by Code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body has 'id', 'monto', 'calificacion', 'palabraclave', and 'usuarioId' properties\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.all.keys('id', 'monto', 'calificacion', 'palabraclave', 'usuarioId');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -328,6 +347,32 @@
 		},
 		{
 			"name": "Get Bono by User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test 1: Verify the response status code is 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test 2: Verify the response body is an array and contains the required fields\r",
+							"pm.test(\"Response body is an array and contains required fields\", function () {\r",
+							"    pm.expect(pm.response.json()).to.be.an('array').that.is.not.empty;\r",
+							"    pm.expect(pm.response.json()[0]).to.have.property('id');\r",
+							"    pm.expect(pm.response.json()[0]).to.have.property('monto');\r",
+							"    pm.expect(pm.response.json()[0]).to.have.property('calificacion');\r",
+							"    pm.expect(pm.response.json()[0]).to.have.property('palabraclave');\r",
+							"    pm.expect(pm.response.json()[0]).to.have.property('usuarioId');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -372,6 +417,25 @@
 		},
 		{
 			"name": "Delete a Bono",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is empty\", function () {\r",
+							"    pm.expect(pm.response.text()).to.be.empty;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -414,6 +478,27 @@
 		},
 		{
 			"name": "Delete a Bono with calificacion higher then 4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test to check if the response status code is 412\r",
+							"pm.test(\"Status code is 412\", function () {\r",
+							"    pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"// Test to check if the response body contains the expected message\r",
+							"pm.test(\"Response body contains expected message\", function () {\r",
+							"    pm.response.to.have.jsonBody(\"message\", \"No se puede eliminar un bono con una calificación mayor a 4.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],

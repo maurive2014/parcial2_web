@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "7bf7e0dc-b25e-475d-913c-086d3743b8f1",
+		"name": "Clase",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40124253"
+	},
+	"item": [
+		{
+			"name": "Create a Clase",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"clase_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body has 'nombre', 'codigo', 'numerocreditos' and 'id'\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.all.keys('nombre', 'codigo', 'numerocreditos', 'id');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Programación Avanzada\",\r\n  \"codigo\": \"0123456789\",\r\n  \"numerocreditos\": 4\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/clases",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"clases"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create a Clase",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Programación Avanzada\",\r\n  \"codigo\": \"0123456789\",\r\n  \"numerocreditos\": 4\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/clases",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clases"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"nombre\": \"Programación Avanzada\",\r\n    \"codigo\": \"0123456789\",\r\n    \"numerocreditos\": 4,\r\n    \"id\": \"29a81a20-3bb6-4318-ad06-5ccb307ff4db\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Create a Clase With a invalid Codigo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test for the status code\r",
+							"pm.test(\"Status code is 412\", function () {\r",
+							"    pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"// Test for specific error message\r",
+							"pm.test(\"Error message is as expected\", function () {\r",
+							"    pm.response.to.have.jsonBody(\"message\", \"El código de la clase debe tener exactamente 10 caracteres.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Programación Avanzada\",\r\n  \"codigo\": \"01234567\",\r\n  \"numerocreditos\": 4\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/clases",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"clases"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create a Clase With a invalid Codigo",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Programación Avanzada\",\r\n  \"codigo\": \"01234567\",\r\n  \"numerocreditos\": 4\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/clases",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clases"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 412,\r\n    \"message\": \"El código de la clase debe tener exactamente 10 caracteres.\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Get a Clase",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body has 'id', 'nombre', 'codigo', and 'numerocreditos'\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.keys('id', 'nombre', 'codigo', 'numerocreditos');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/clases/{{clase_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"clases",
+						"{{clase_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get a Clase",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clases/{{clase_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clases",
+								"{{clase_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"29a81a20-3bb6-4318-ad06-5ccb307ff4db\",\r\n    \"nombre\": \"Programación Avanzada\",\r\n    \"codigo\": \"0123456789\",\r\n    \"numerocreditos\": 4,\r\n    \"bonos\": []\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Get a invalid Clase",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/clases/13297f26-d7b9-45ff-8860-c30b3560cf0e",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"clases",
+						"13297f26-d7b9-45ff-8860-c30b3560cf0e"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get a invalid Clase",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clases/13297f26-d7b9-45ff-8860-c30b3560cf0e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clases",
+								"13297f26-d7b9-45ff-8860-c30b3560cf0e"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The clase with the given id was not found\"\r\n}"
+				}
+			]
+		}
+	]
+}
