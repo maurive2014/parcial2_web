@@ -7,6 +7,7 @@ import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-co
 import { BonoEntity } from './bono.entity';
 import { BonoService } from './bono.service';
 import { UsuarioEntity } from 'src/usuario/usuario.entity';
+import { faker } from '@faker-js/faker';
 
 const mockUsuarioRepository = {
   // Define mock methods for UsuarioEntityRepository as needed
@@ -36,5 +37,43 @@ describe('BonoService', () => {
  it('should be defined', () => {
    expect(service).toBeDefined();
  });
+
+ describe('crearBono', () => {
+  it('should create a bono with valid data', async () => {
+    const usuario = {
+      id: '2',
+      nombre: faker.name.fullName(),
+      rol: "Profesor",
+    } as UsuarioEntity;
+
+    const bono: BonoEntity = {
+      id: '1',
+      monto: 100,
+      calificacion: 4.5,
+      palabraclave: faker.lorem.word(),
+      usuario,
+      clase: null,
+    };
+
+
+    const result = await service.crearBono(bono);
+    expect(result).toEqual(bono);
+  });
+
+  // it('should throw an error if monto is invalid', async () => {
+  //   const bono: BonoEntity = {
+  //     id: faker.datatype.uuid(),
+  //     monto: -10,
+  //     calificacion: 4.5,
+  //     palabraclave: faker.lorem.word(),
+  //     usuario: { id: faker.datatype.uuid() } as UsuarioEntity,
+  //     clase: null,
+  //   };
+
+  //   await expect(service.crearBono(bono)).rejects.toThrow(
+  //     new BusinessLogicException('El monto está mal', 'PRECONDITION_FAILED'),
+  //   );
+  // });
+});
 
 });

@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { BonoEntity } from './bono.entity';
 import { UsuarioEntity, UserRole } from '../usuario/usuario.entity';
 
+
 @Injectable()
 export class BonoService {
 
