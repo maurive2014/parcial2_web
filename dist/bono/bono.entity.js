@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BonoEntity = void 0;
 const clase_entity_1 = require("../clase/clase.entity");
+const usuario_entity_1 = require("../usuario/usuario.entity");
 const typeorm_1 = require("typeorm");
 let BonoEntity = class BonoEntity {
 };
@@ -32,9 +33,9 @@ __decorate([
     __metadata("design:type", String)
 ], BonoEntity.prototype, "palabraclave", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], BonoEntity.prototype, "usuarioId", void 0);
+    (0, typeorm_1.ManyToOne)(() => usuario_entity_1.UsuarioEntity, usuario => usuario.bonos),
+    __metadata("design:type", usuario_entity_1.UsuarioEntity)
+], BonoEntity.prototype, "usuario", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => clase_entity_1.ClaseEntity, clase => clase.bonos),
     __metadata("design:type", clase_entity_1.ClaseEntity)
