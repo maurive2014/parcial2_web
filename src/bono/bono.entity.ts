@@ -3,10 +3,11 @@ import { ClaseEntity } from 'src/clase/clase.entity';
 import { UsuarioEntity } from 'src/usuario/usuario.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity()
 export class BonoEntity {
 
-    @PrimaryGeneratedColumn('increment', { type: 'bigint' })
-    id: number;
+    @PrimaryGeneratedColumn("uuid")
+    id: string;
 
     @Column()
     monto: number;

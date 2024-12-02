@@ -22,8 +22,8 @@ let UsuarioEntity = class UsuarioEntity {
 };
 exports.UsuarioEntity = UsuarioEntity;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)('increment', { type: 'bigint' }),
-    __metadata("design:type", Number)
+    (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
+    __metadata("design:type", String)
 ], UsuarioEntity.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),

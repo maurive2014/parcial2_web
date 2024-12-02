@@ -8,10 +8,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BonoModule = void 0;
 const common_1 = require("@nestjs/common");
+const typeorm_1 = require("@nestjs/typeorm");
+const bono_entity_1 = require("./bono.entity");
+const bono_service_1 = require("./bono.service");
+const usuario_module_1 = require("../usuario/usuario.module");
+const usuario_entity_1 = require("../usuario/usuario.entity");
+const bono_controller_1 = require("./bono.controller");
 let BonoModule = class BonoModule {
 };
 exports.BonoModule = BonoModule;
 exports.BonoModule = BonoModule = __decorate([
-    (0, common_1.Module)({})
+    (0, common_1.Module)({
+        imports: [usuario_module_1.UsuarioModule, typeorm_1.TypeOrmModule.forFeature([bono_entity_1.BonoEntity, usuario_entity_1.UsuarioEntity])],
+        providers: [bono_service_1.BonoService],
+        controllers: [bono_controller_1.BonoController]
+    })
 ], BonoModule);
 //# sourceMappingURL=bono.module.js.map

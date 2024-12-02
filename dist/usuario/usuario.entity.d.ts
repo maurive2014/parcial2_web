@@ -5,7 +5,7 @@ export declare enum UserRole {
     DECANA = "Decana"
 }
 export declare class UsuarioEntity {
-    id: number;
+    id: string;
     cedula: number;
     nombre: string;
     grupodeinvestigacion: string;

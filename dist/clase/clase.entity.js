@@ -13,12 +13,12 @@ exports.ClaseEntity = void 0;
 const bono_entity_1 = require("../bono/bono.entity");
 const usuario_entity_1 = require("../usuario/usuario.entity");
 const typeorm_1 = require("typeorm");
-class ClaseEntity {
-}
+let ClaseEntity = class ClaseEntity {
+};
 exports.ClaseEntity = ClaseEntity;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)('increment', { type: 'bigint' }),
-    __metadata("design:type", Number)
+    (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
+    __metadata("design:type", String)
 ], ClaseEntity.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
@@ -40,4 +40,7 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => bono_entity_1.BonoEntity, bono => bono.clase),
     __metadata("design:type", Array)
 ], ClaseEntity.prototype, "bonos", void 0);
+exports.ClaseEntity = ClaseEntity = __decorate([
+    (0, typeorm_1.Entity)()
+], ClaseEntity);
 //# sourceMappingURL=clase.entity.js.map
