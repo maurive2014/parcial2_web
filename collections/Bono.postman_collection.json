@@ -1,0 +1,458 @@
+{
+	"info": {
+		"_postman_id": "41b66276-059c-4782-8d15-01863e0f6b75",
+		"name": "Bono",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40124253"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"user_id\", data.id);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"rol\": \"Profesor\",\r\n  \"correo\": \"juan.perez@example.com\",\r\n  \"cedula\": 123456789,\r\n  \"grupodeinvestigacion\": \"TICSW\",\r\n  \"numeroextension\": 12345678\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"user_id2\", data.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"rol\": \"Decana\",\r\n  \"correo\": \"juan.perez@example.com\",\r\n  \"cedula\": 123456789,\r\n  \"grupodeinvestigacion\": \"TICSW\",\r\n  \"numeroextension\": 12345678\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Bono",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"bono_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body has 'id' property\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.property('id');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"monto\":1000,\r\n    \"calificacion\":3.5,\r\n    \"usuarioId\":\"{{user_id}}\",\r\n    \"claseId\":\"1\",\r\n    \"palabraclave\":\"asdjfkl\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/bonos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"bonos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create a Bono",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"monto\":1000,\r\n    \"calificacion\":3.5,\r\n    \"usuarioId\":\"{{user_id}}\",\r\n    \"claseId\":\"1\",\r\n    \"palabraclave\":\"asdjfkl\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bonos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bonos"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"monto\": 1000,\r\n    \"calificacion\": 3.5,\r\n    \"usuarioId\": \"55351ef2-4159-48d5-801e-2eb058bf6e8a\",\r\n    \"claseId\": \"1\",\r\n    \"palabraclave\": \"asdjfkl\",\r\n    \"id\": \"7f3c509d-3996-4992-83da-ddafd422e002\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Create a Bono 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"bono_id2\", data.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"monto\":1000,\r\n    \"calificacion\":4.5,\r\n    \"usuarioId\":\"{{user_id}}\",\r\n    \"claseId\":\"1\",\r\n    \"palabraclave\":\"asdjfkl\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/bonos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"bonos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Bono With invalid usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test for the status code\r",
+							"pm.test(\"Status code is 412\", function () {\r",
+							"    pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"// Test for the error message in the response body\r",
+							"pm.test(\"Error message is present\", function () {\r",
+							"    pm.response.to.have.jsonBody(\"message\", \"Solo un usuario con rol de Profesor puede tener un bono.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"monto\":1000,\r\n    \"calificacion\":3.5,\r\n    \"usuarioId\":\"{{user_id2}}\",\r\n    \"claseId\":\"1\",\r\n    \"palabraclave\":\"asdjfkl\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/bonos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"bonos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create a Bono With invalid usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"monto\":1000,\r\n    \"calificacion\":3.5,\r\n    \"usuarioId\":\"{{user_id}}\",\r\n    \"claseId\":\"1\",\r\n    \"palabraclave\":\"asdjfkl\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bonos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bonos"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 412,\r\n    \"message\": \"Solo un usuario con rol de Profesor puede tener un bono.\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Bono by Code",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/bonos/{{bono_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"bonos",
+						"{{bono_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Bono by Code",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/bonos/{{bono_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bonos",
+								"{{bono_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"85164d89-9b87-4cac-8425-9ae391c28fb1\",\r\n    \"monto\": 1000,\r\n    \"calificacion\": \"3.50\",\r\n    \"palabraclave\": \"asdjfkl\",\r\n    \"usuarioId\": \"55351ef2-4159-48d5-801e-2eb058bf6e8a\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Bono by User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/bonos/usuario/{{user_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"bonos",
+						"usuario",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Bono by User",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/bonos/usuario/{{user_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bonos",
+								"usuario",
+								"{{user_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n    {\r\n        \"id\": \"7f3c509d-3996-4992-83da-ddafd422e002\",\r\n        \"monto\": 1000,\r\n        \"calificacion\": \"3.50\",\r\n        \"palabraclave\": \"asdjfkl\",\r\n        \"usuarioId\": \"55351ef2-4159-48d5-801e-2eb058bf6e8a\"\r\n    },\r\n    {\r\n        \"id\": \"8cebb15b-2a43-4ff8-9b92-a86f4dc38a0e\",\r\n        \"monto\": 1000,\r\n        \"calificacion\": \"4.50\",\r\n        \"palabraclave\": \"asdjfkl\",\r\n        \"usuarioId\": \"55351ef2-4159-48d5-801e-2eb058bf6e8a\"\r\n    },\r\n    {\r\n        \"id\": \"85164d89-9b87-4cac-8425-9ae391c28fb1\",\r\n        \"monto\": 1000,\r\n        \"calificacion\": \"3.50\",\r\n        \"palabraclave\": \"asdjfkl\",\r\n        \"usuarioId\": \"55351ef2-4159-48d5-801e-2eb058bf6e8a\"\r\n    },\r\n    {\r\n        \"id\": \"57d15488-61c1-4319-b1b9-47c9518b99d2\",\r\n        \"monto\": 1000,\r\n        \"calificacion\": \"4.50\",\r\n        \"palabraclave\": \"asdjfkl\",\r\n        \"usuarioId\": \"55351ef2-4159-48d5-801e-2eb058bf6e8a\"\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Delete a Bono",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/bonos/{{bono_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"bonos",
+						"{{bono_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete a Bono",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/bonos/{{bono_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bonos",
+								"{{bono_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Delete a Bono with calificacion higher then 4",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/bonos/{{bono_id2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"bonos",
+						"{{bono_id2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete a Bono with calificacion higher then 4",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/bonos/{{bono_id2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bonos",
+								"{{bono_id2}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 412,\r\n    \"message\": \"No se puede eliminar un bono con una calificación mayor a 4.\"\r\n}"
+				}
+			]
+		}
+	]
+}

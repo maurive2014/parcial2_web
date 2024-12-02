@@ -1,3 +1,16 @@
+## Descripción general
+
+Corra 
+
+```bash
+$ npm install
+```
+
+Las colecciones de postman se encuentran en la carpeta Collections.
+
+Cree una base de datos con el nombre "parcial"
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>

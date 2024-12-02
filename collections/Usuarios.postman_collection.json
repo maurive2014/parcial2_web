@@ -1,0 +1,249 @@
+{
+	"info": {
+		"_postman_id": "479ef9ea-9a44-4a1b-bbbe-e6863a6132f2",
+		"name": "Usuarios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40124253"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"user_id\", data.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"rol\": \"Investigador\",\r\n  \"correo\": \"juan.perez@example.com\",\r\n  \"cedula\": 123456789,\r\n  \"grupodeinvestigacion\": \"Inteligencia Artificial\",\r\n  \"numeroextension\": 12345678\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"rol\": \"Investigador\",\r\n  \"correo\": \"juan.perez@example.com\",\r\n  \"cedula\": 123456789,\r\n  \"grupodeinvestigacion\": \"Inteligencia Artificial\",\r\n  \"numeroextension\": 12345678\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"nombre\": \"Juan Pérez\",\r\n    \"rol\": \"Investigador\",\r\n    \"correo\": \"juan.perez@example.com\",\r\n    \"cedula\": 123456789,\r\n    \"grupodeinvestigacion\": \"Inteligencia Artificial\",\r\n    \"numeroextension\": 12345678,\r\n    \"id\": \"1763f693-1548-4621-ab10-4f7bc2b47d1a\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Get a User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{user_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get a User",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{user_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{user_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"1763f693-1548-4621-ab10-4f7bc2b47d1a\",\r\n    \"cedula\": 123456789,\r\n    \"nombre\": \"Juan Pérez\",\r\n    \"grupodeinvestigacion\": \"Inteligencia Artificial\",\r\n    \"numeroextension\": 12345678,\r\n    \"rol\": \"Investigador\",\r\n    \"bonos\": [],\r\n    \"clases\": []\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Get a invalid User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/13297f26-d7b9-45ff-8860-c30b3560cf0e",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"13297f26-d7b9-45ff-8860-c30b3560cf0e"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get a invalid User",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/13297f26-d7b9-45ff-8860-c30b3560cf0e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"13297f26-d7b9-45ff-8860-c30b3560cf0e"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The usuario with the given id was not found\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{user_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete User",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{user_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{user_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Delete a invalid User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/13297f26-d7b9-45ff-8860-c30b3560cf0e",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"13297f26-d7b9-45ff-8860-c30b3560cf0e"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete a invalid User",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/13297f26-d7b9-45ff-8860-c30b3560cf0e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"13297f26-d7b9-45ff-8860-c30b3560cf0e"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The usuario with the given id was not found\"\r\n}"
+				}
+			]
+		}
+	]
+}
