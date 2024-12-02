@@ -17,8 +17,10 @@ export class BonoEntity {
     
     @Column()
     palabraclave: string;
-    
 
+    @Column({type:"uuid"})
+    usuarioId: string;
+    
     @ManyToOne(() => UsuarioEntity, usuario => usuario.bonos)
     usuario: UsuarioEntity;
 

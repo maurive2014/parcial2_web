@@ -28,6 +28,7 @@ export class BonoController {
     }
 
     @Delete(':id')
+    @HttpCode(204)
     async deleteBono(@Param('id') id: string) {
         return await this.bonoService.deleteBono(id);
     }

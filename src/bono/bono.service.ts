@@ -17,15 +17,11 @@ export class BonoService {
     ){}
 
     async crearBono(bono: BonoEntity): Promise<BonoEntity> {
-
-
         if (!bono.monto || (bono.monto <= 0)){
             throw new BusinessLogicException("El monto está mal", BusinessError.PRECONDITION_FAILED);
         }
-
-        const usuario = await this.usuarioRepository.findOne({
-            where: { id: bono.usuario.id },
-        });
+        console.log(bono.usuarioId)
+        const usuario:UsuarioEntity = await this.usuarioRepository.findOne({where: { id: bono.usuarioId },});
     
         if (!usuario) {
             throw new BusinessLogicException('El usuario asociado al bono no existe.', BusinessError.NOT_FOUND);
